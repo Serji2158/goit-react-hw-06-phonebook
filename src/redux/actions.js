@@ -45,3 +45,5 @@ export const setFilter = createAction("contactsActions/setFilter");
 //   type: SETFILTER,
 //   payload: filter,
 // });
+
+// export default { addNewContact, deleteContact, getContacts, setFilter };
