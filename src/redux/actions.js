@@ -11,7 +11,7 @@ export const addNewContact = createAction(
   "contactsActions/addContact",
   (contact) => ({
     payload: {
-      contact,
+      ...contact,
       id: uuidv4(),
     },
   })
@@ -20,7 +20,7 @@ export const addNewContact = createAction(
 // export const addNewContact = (contact) => ({
 //   type: ADDCONTACT,
 //   payload: {
-//     contact,
+//     ...contact,
 //     id: uuidv4(),
 //   },
 // });

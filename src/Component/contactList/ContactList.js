@@ -4,16 +4,19 @@ import { useSelector } from "react-redux";
 import ContactListItem from "./contactListItem/ContactListItem";
 
 const ContactList = () => {
-  const contacts = useSelector((state) => state.contacts.items);
-  // const filter = useSelector((state) => state.contacts.filter);
+  const filterContact = useSelector((state) => state.contacts.filter);
+  const contacts = useSelector(({ contacts: { items } }) =>
+    items.filter(({ name }) => name.toLowerCase().includes(filterContact))
+  );
 
   return (
     <>
       <div>
         <ol className={s.list}>
-          {contacts.map((contact) => (
-            <ContactListItem key={contact.id} contact={contact} />
-          ))}
+          {contacts &&
+            contacts.map((contact) => (
+              <ContactListItem key={contact.id} contact={contact} />
+            ))}
         </ol>
       </div>
     </>

@@ -3,24 +3,17 @@ import { v4 as uuidv4 } from "uuid";
 import ContactList from "./contactList/ContactList";
 import Filter from "./filter/Filter";
 import ContactForm from "./contactForm/ContactForm";
-import { connect } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { deleteContact } from "../redux/actions";
 
 const AppHook = () => {
-  const [contacts, setContacts] = useState(
-    JSON.parse(localStorage.getItem("contacts")) ?? ""
-  );
+  // const [contacts, setContacts] = useState([]);
   const [filter, setFilter] = useState("");
-
-  // useEffect(() => {
-  //  const contacts = localStorage.setItem("contacts", JSON.stringify(contacts));
-  // }, []);
-
-  useEffect(() => {
-    localStorage.setItem("contacts", JSON.stringify(contacts));
-  }, [contacts]);
+  const dispatch = useDispatch();
+  const contacts = useSelector((state) => state.contacts.items);
 
   const addNewContact = (newContact) => {
-    setContacts((prev) => [...prev, { id: uuidv4(), ...newContact }]);
+    dispatch(addNewContact(newContact));
   };
 
   const isExistContact = (name) =>
@@ -30,12 +23,12 @@ const AppHook = () => {
 
   const deletContact = (e) => {
     const id = e.target.id;
-    setContacts((prev) => prev.filter((contact) => contact.id !== id));
+    dispatch(deleteContact(id));
   };
 
   const onHandleChangeFilter = (e) => {
     const filter = e.target.value;
-    setFilter(filter);
+    dispatch(setFilter(filter));
   };
 
   const filteredContacts = () => {
@@ -47,6 +40,22 @@ const AppHook = () => {
       : contacts;
   };
 
+  // import React from "react";
+  // import { useDispatch, useSelector } from "react-redux";
+  // import { setFilter } from "../../../redux/tasks/tasksActions";
+
+  // const TasksFilter = () => {
+  //   const dispatch = useDispatch();
+  //   const filter = useSelector((state) => state.tasks.filter);
+  //   const onHandleChange = (e) => {
+  //     const { value } = e.target;
+  //     dispatch(setFilter(value));
+  //   };
+  //   return <input type='text' onChange={onHandleChange} value={filter} />;
+  // };
+
+  // export default TasksFilter;
+
   return (
     <>
       <div>
@@ -57,13 +66,10 @@ const AppHook = () => {
         />
         <h2>Contacts</h2>
         <Filter value={filter} onChange={onHandleChangeFilter} />
-        <ContactList
-          contacts={filteredContacts()}
-          deletContact={deletContact}
-        />
+        <ContactList deletContact={deletContact} />
       </div>
     </>
   );
 };
 
-export default connect()(AppHook);
+export default AppHook;
