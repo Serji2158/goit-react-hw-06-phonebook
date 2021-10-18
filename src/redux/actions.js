@@ -4,7 +4,7 @@
 //   GETCONTACTS,
 //   SETFILTER,
 // } from "./Contacts/contactTypes";
-import { v4 as uuidv4 } from "uuid";
+import { nanoid } from "nanoid";
 import { createAction } from "@reduxjs/toolkit";
 
 export const addNewContact = createAction(
@@ -12,7 +12,7 @@ export const addNewContact = createAction(
   (contact) => ({
     payload: {
       ...contact,
-      id: uuidv4(),
+      id: nanoid(),
     },
   })
 );

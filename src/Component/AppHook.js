@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from "react";
-import { v4 as uuidv4 } from "uuid";
+import React, { useState } from "react";
 import ContactList from "./contactList/ContactList";
 import Filter from "./filter/Filter";
 import ContactForm from "./contactForm/ContactForm";
@@ -7,7 +6,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { deleteContact } from "../redux/actions";
 
 const AppHook = () => {
-  // const [contacts, setContacts] = useState([]);
   const [filter, setFilter] = useState("");
   const dispatch = useDispatch();
   const contacts = useSelector((state) => state.contacts.items);
@@ -31,14 +29,14 @@ const AppHook = () => {
     dispatch(setFilter(filter));
   };
 
-  const filteredContacts = () => {
-    const normolizedFilter = filter.toLowerCase();
-    return normolizedFilter
-      ? contacts.filter((contact) =>
-          contact.name.toLowerCase().includes(normolizedFilter)
-        )
-      : contacts;
-  };
+  // const filteredContacts = () => {
+  //   const normolizedFilter = filter.toLowerCase();
+  //   return normolizedFilter
+  //     ? contacts.filter((contact) =>
+  //         contact.name.toLowerCase().includes(normolizedFilter)
+  //       )
+  //     : contacts;
+  // };
 
   // import React from "react";
   // import { useDispatch, useSelector } from "react-redux";

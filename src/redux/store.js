@@ -2,6 +2,7 @@ import { combineReducers } from "redux";
 // import { composeWithDevTools } from "redux-devtools-extension";
 import { contactsItemReducer } from "./Contacts/contactsReducer";
 import {
+  persistStore,
   persistReducer,
   FLUSH,
   REHYDRATE,
@@ -12,11 +13,11 @@ import {
 } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 import { configureStore } from "@reduxjs/toolkit";
-import persistStore from "redux-persist/es/persistStore";
 
-const rootReducer = combineReducers({
-  contacts: contactsItemReducer,
-});
+const persistConfig = {
+  key: "contacts",
+  storage,
+};
 
 // const middleware = [
 //   ...getDefaultMiddleware({
@@ -26,10 +27,9 @@ const rootReducer = combineReducers({
 //   }),
 // ];
 
-const persistConfig = {
-  key: "contacts",
-  storage,
-};
+const rootReducer = combineReducers({
+  contacts: contactsItemReducer,
+});
 
 export const store = configureStore({
   reducer: persistReducer(persistConfig, rootReducer),
