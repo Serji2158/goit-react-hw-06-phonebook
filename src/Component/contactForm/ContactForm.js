@@ -2,7 +2,7 @@ import React, { useState } from "react";
 // import PropTypes from "prop-types";
 import s from "./contactForm.module.css";
 import { useDispatch } from "react-redux";
-import { addNewContact } from "../../redux/actions";
+import { addNewContact } from "../../redux/Contacts/contactsActions";
 
 const ContactForm = ({ isExistContact }) => {
   const [name, setName] = useState("");

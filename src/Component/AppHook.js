@@ -3,7 +3,7 @@ import ContactList from "./contactList/ContactList";
 import Filter from "./filter/Filter";
 import ContactForm from "./contactForm/ContactForm";
 import { useDispatch, useSelector } from "react-redux";
-import { deleteContact } from "../redux/actions";
+import { deleteContact } from "../redux/Contacts/contactsActions";
 
 const AppHook = () => {
   const [filter, setFilter] = useState("");

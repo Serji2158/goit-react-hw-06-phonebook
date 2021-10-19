@@ -5,7 +5,7 @@ import {
   deleteContact,
   getContacts,
   setFilter,
-} from "../actions";
+} from "./contactsActions";
 // import {
 //   ADDCONTACT,
 //   DELETECONTACT,
