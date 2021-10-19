@@ -1,13 +1,14 @@
 import React, { useState } from "react";
 // import PropTypes from "prop-types";
 import s from "./contactForm.module.css";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addNewContact } from "../../redux/Contacts/contactsActions";
 
-const ContactForm = ({ isExistContact }) => {
+const ContactForm = () => {
   const [name, setName] = useState("");
   const [number, setNumber] = useState("");
   const dispatch = useDispatch();
+  const contacts = useSelector((state) => state.contacts.items);
 
   // const onHandleChange = (e) => {
   //   const { value, name } = e.target;
@@ -35,6 +36,11 @@ const ContactForm = ({ isExistContact }) => {
   //   setName((prev) => "");
   //   setNumber((prev) => "");
   // };
+
+  const isExistContact = (name) =>
+    contacts.some(
+      (contact) => contact.name.toLowerCase() === name.toLowerCase()
+    );
 
   const onHandleSubmit = (e) => {
     e.preventDefault();

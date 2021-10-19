@@ -17,6 +17,7 @@ import { configureStore } from "@reduxjs/toolkit";
 const persistConfig = {
   key: "contacts",
   storage,
+  blacklist: ["filter"],
 };
 
 const middleware = (getDefaultMiddleware) =>
