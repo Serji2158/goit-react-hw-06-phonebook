@@ -28,11 +28,11 @@ const middleware = (getDefaultMiddleware) =>
   });
 
 const rootReducer = combineReducers({
-  contacts: contactsItemReducer,
+  contacts: persistReducer(persistConfig, contactsItemReducer),
 });
 
 export const store = configureStore({
-  reducer: persistReducer(persistConfig, rootReducer),
+  reducer: rootReducer,
   middleware,
 });
 
